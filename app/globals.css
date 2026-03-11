@@ -47,73 +47,78 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* Terminal theme — Tokyo Night. Always dark, no light mode. */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
+  --background: oklch(0.07 0.005 260); /* deeper blue-black */
+  --foreground: oklch(0.93 0 0);
+  --card: oklch(0.12 0.008 260); /* subtle blue tint */
+  --card-foreground: oklch(0.93 0 0);
+  --popover: oklch(0.12 0.008 260);
+  --popover-foreground: oklch(0.93 0 0);
+  --primary: oklch(0.60 0.16 145); /* #2ea44f green */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.18 0.005 260);
+  --secondary-foreground: oklch(0.93 0 0);
+  --muted: oklch(0.18 0.005 260);
+  --muted-foreground: oklch(0.55 0 0);
+  --accent: oklch(0.18 0.008 260);
+  --accent-foreground: oklch(0.93 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(0.22 0.008 260);
+  --input: oklch(0.16 0.008 260);
+  --ring: oklch(0.60 0.16 145);
+  --chart-1: oklch(0.60 0.16 145);
   --chart-2: oklch(0.623 0.214 259.815);
   --chart-3: oklch(0.546 0.245 262.881);
   --chart-4: oklch(0.488 0.243 264.376);
   --chart-5: oklch(0.424 0.199 265.638);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: oklch(0.12 0.008 260);
+  --sidebar-foreground: oklch(0.93 0 0);
+  --sidebar-primary: oklch(0.60 0.16 145);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.18 0.008 260);
+  --sidebar-accent-foreground: oklch(0.93 0 0);
+  --sidebar-border: oklch(0.22 0.008 260);
+  --sidebar-ring: oklch(0.60 0.16 145);
+  /* Terminal vars */
+  --terminal-bg: #0d1117;
+  --terminal-green: #58d68d;
+  --terminal-border: #30363d;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: oklch(0.07 0.005 260);
+  --foreground: oklch(0.93 0 0);
+  --card: oklch(0.12 0.008 260);
+  --card-foreground: oklch(0.93 0 0);
+  --popover: oklch(0.12 0.008 260);
+  --popover-foreground: oklch(0.93 0 0);
+  --primary: oklch(0.60 0.16 145);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.18 0.005 260);
+  --secondary-foreground: oklch(0.93 0 0);
+  --muted: oklch(0.18 0.005 260);
+  --muted-foreground: oklch(0.55 0 0);
+  --accent: oklch(0.18 0.008 260);
+  --accent-foreground: oklch(0.93 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
+  --border: oklch(0.22 0.008 260);
+  --input: oklch(0.16 0.008 260);
+  --ring: oklch(0.60 0.16 145);
+  --chart-1: oklch(0.60 0.16 145);
   --chart-2: oklch(0.623 0.214 259.815);
   --chart-3: oklch(0.546 0.245 262.881);
   --chart-4: oklch(0.488 0.243 264.376);
   --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar: oklch(0.12 0.008 260);
+  --sidebar-foreground: oklch(0.93 0 0);
+  --sidebar-primary: oklch(0.60 0.16 145);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.18 0.008 260);
+  --sidebar-accent-foreground: oklch(0.93 0 0);
+  --sidebar-border: oklch(0.22 0.008 260);
+  --sidebar-ring: oklch(0.60 0.16 145);
 }
 
 @layer base {
@@ -125,5 +130,71 @@
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
   }
+}
+
+/* Code / terminal font stack */
+.font-code {
+  font-family: 'JetBrains Mono', var(--font-geist-mono), 'Fira Code', 'Consolas', monospace;
+}
+
+/* Terminal output block */
+.terminal-output {
+  background: var(--terminal-bg);
+  color: var(--terminal-green);
+  border: 1px solid var(--terminal-border);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', var(--font-geist-mono), 'Fira Code', monospace;
+}
+
+/* Subtle glow around terminal blocks */
+.terminal-glow {
+  box-shadow:
+    0 0 40px rgba(88, 214, 141, 0.06),
+    0 0 80px rgba(88, 214, 141, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* Green gradient text */
+.text-gradient-green {
+  background: linear-gradient(135deg, #58d68d 0%, #2ea44f 50%, #58d68d 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-green 6s ease-in-out infinite;
+}
+
+@keyframes shimmer-green {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Blinking terminal cursor */
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor::after {
+  content: "\2588";
+  color: var(--terminal-green);
+  animation: blink-cursor 1s step-end infinite;
+}
+
+/* Glass card effect */
+.glass-card {
+  background: rgba(26, 27, 38, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Subtle grid pattern for backgrounds */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
