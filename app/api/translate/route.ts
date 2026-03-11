@@ -5,10 +5,29 @@ import { logger } from "@/lib/logger";
 
 export const maxDuration = 60;
 
-// Simple in-memory rate limiter: max 30 requests per IP per minute
+// In-memory rate limiter: max 30 requests per IP per minute
+// Note: on Vercel serverless, this resets per cold start. For production,
+// upgrade to Upstash @upstash/ratelimit with Redis for cross-instance limiting.
 const rateMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 30;
 const RATE_WINDOW_MS = 60_000;
+
+// Periodic cleanup to prevent memory leaks in long-lived processes
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, entry] of rateMap) {
+    if (now > entry.resetAt) rateMap.delete(key);
+  }
+}, RATE_WINDOW_MS);
+
+function getClientIp(request: Request): string {
+  // Vercel sets x-real-ip from actual connection (cannot be spoofed by client)
+  return (
+    request.headers.get("x-real-ip") ||
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    "unknown"
+  );
+}
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
@@ -25,7 +44,7 @@ function isRateLimited(ip: string): boolean {
 
 export async function POST(request: Request) {
   const start = performance.now();
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
+  const ip = getClientIp(request);
 
   if (isRateLimited(ip)) {
     logger.warn("rate_limited", { ip });
@@ -46,6 +65,13 @@ export async function POST(request: Request) {
     }
 
     const trimmedQuery = query.trim();
+
+    if (trimmedQuery.length > 500) {
+      return NextResponse.json(
+        { error: "Query too long (max 500 characters)" },
+        { status: 400 }
+      );
+    }
 
     logger.info("translate_start", { query: trimmedQuery, ip });
 
