@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { logger } from "@/lib/logger";
+import { saveFeedback } from "@/lib/supabase";
 
 // Simple rate limit: 10 feedback submissions per IP per minute
 const feedbackRateMap = new Map<string, { count: number; resetAt: number }>();
@@ -55,6 +56,9 @@ export async function POST(request: Request) {
       ...(correction && { correction: correction.slice(0, 1000) }),
       ip,
     });
+
+    // Persist to Supabase if configured (best-effort, non-blocking)
+    saveFeedback({ query, command, rating, correction, ip }).catch(() => {});
 
     return NextResponse.json({ ok: true });
   } catch {

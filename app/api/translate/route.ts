@@ -2,6 +2,7 @@ import { Client } from "@gradio/client";
 import { NextResponse } from "next/server";
 import { cleanResponse } from "@/lib/clean-response";
 import { logger } from "@/lib/logger";
+import { saveTranslation } from "@/lib/supabase";
 
 export const maxDuration = 60;
 
@@ -128,6 +129,9 @@ export async function POST(request: Request) {
       command,
       durationMs,
     });
+
+    // Persist to Supabase if configured (best-effort, non-blocking)
+    saveTranslation({ query: trimmedQuery, command, duration_ms: durationMs, ip }).catch(() => {});
 
     return NextResponse.json({ command, meta });
   } catch (error) {
