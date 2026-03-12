@@ -29,10 +29,8 @@ function isFeedbackRateLimited(ip: string): boolean {
 }
 
 export async function POST(request: Request) {
-  const ip =
-    request.headers.get("x-real-ip") ||
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    "unknown";
+  // x-real-ip is set by Vercel and cannot be spoofed by the client
+  const ip = request.headers.get("x-real-ip") || "unknown";
 
   if (isFeedbackRateLimited(ip)) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429, headers: { "Retry-After": "60" } });

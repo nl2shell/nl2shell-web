@@ -34,11 +34,9 @@ async function getGradioClient(): Promise<Client> {
 }
 
 function getClientIp(request: Request): string {
-  return (
-    request.headers.get("x-real-ip") ||
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    "unknown"
-  );
+  // x-real-ip is set by Vercel and cannot be spoofed by the client.
+  // Do NOT fall back to x-forwarded-for as it is client-controllable.
+  return request.headers.get("x-real-ip") || "unknown";
 }
 
 function isRateLimited(ip: string): boolean {

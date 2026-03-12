@@ -68,9 +68,18 @@ export async function saveTranslation(row: TranslationRow): Promise<boolean> {
 
 // ── IP hashing (privacy-preserving) ──
 
+let ipSaltWarned = false;
+
 async function hashIp(ip: string): Promise<string> {
+  const salt = process.env.IP_SALT;
+  if (!salt) {
+    if (!ipSaltWarned) {
+      console.warn("IP_SALT not configured — IP hashing is non-deterministic");
+      ipSaltWarned = true;
+    }
+    return "no-salt";
+  }
   const encoder = new TextEncoder();
-  const salt = process.env.IP_SALT || crypto.randomUUID();
   const data = encoder.encode(ip + salt);
   const hash = await crypto.subtle.digest("SHA-256", data);
   return Array.from(new Uint8Array(hash))
