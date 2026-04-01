@@ -1,14 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createSpeechRecognition, isSpeechSupported } from "@/lib/speech";
 
-export function useSpeechRecognition() {
-  const [isSupported, setIsSupported] = useState(false);
+// Hydration-safe browser feature detection using useSyncExternalStore
+function subscribeSpeechSupport() { return () => {}; }
+function getSpeechSnapshot() { return isSpeechSupported(); }
+function getSpeechServerSnapshot() { return false; }
 
-  useEffect(() => {
-    setIsSupported(isSpeechSupported());
-  }, []);
+export function useSpeechRecognition() {
+  const isSupported = useSyncExternalStore(subscribeSpeechSupport, getSpeechSnapshot, getSpeechServerSnapshot);
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [interimTranscript, setInterimTranscript] = useState("");

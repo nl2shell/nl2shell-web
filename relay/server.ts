@@ -18,7 +18,7 @@ import {
   updateLastActive,
   updateStatus,
 } from "./session-store.js";
-import { isBlocked, getBlockReason } from "./security.js";
+import { getBlockReason } from "./security.js";
 import { recordAudit } from "./audit.js";
 
 // ---------------------------------------------------------------------------
