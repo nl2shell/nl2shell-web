@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,9 +21,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NL2Shell — Stop using ChatGPT for shell commands",
+  metadataBase: new URL("https://nl2shell.com"),
+  title: "NL2Shell — Natural Language to Shell Commands",
   description:
-    "Type what you want in plain English, get the shell command instantly. Powered by a fine-tuned 800M parameter model running locally. No API keys, no cloud, no subscription.",
+    "Type what you want in plain English, get the shell command instantly. Powered by a fine-tuned 800M model. No API keys, no cloud, no subscription. Privacy-first.",
   keywords: [
     "nl2shell",
     "natural language to shell",
@@ -33,11 +35,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Arya Teja" }],
   openGraph: {
-    title: "NL2Shell — Stop using ChatGPT for shell commands",
+    title: "NL2Shell — Natural Language to Shell Commands",
     description:
       "Plain English to terminal commands — locally, instantly, privately. Free and open source.",
     type: "website",
     siteName: "NL2Shell",
+    url: "https://nl2shell.com",
   },
   twitter: {
     card: "summary_large_image",
@@ -57,11 +60,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          {children}
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

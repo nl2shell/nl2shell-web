@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { Loader2, Terminal } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,6 +9,7 @@ import { VoiceInput } from "@/components/voice-input";
 import { CommandOutput } from "@/components/command-output";
 import { ExecutionOutput } from "@/components/execution-output";
 import { ExamplePrompts } from "@/components/example-prompts";
+import { AILoader } from "@/components/ai-loader";
 import { useTranslate } from "@/hooks/use-translate";
 import { useSandbox } from "@/hooks/use-sandbox";
 
@@ -108,12 +110,12 @@ export function ShellSession() {
               >
                 {isLoading ? (
                   <>
-                    <LoaderIcon className="mr-2 size-4 animate-spin" />
+                    <Loader2 className="mr-2 size-4 animate-spin" />
                     Translating...
                   </>
                 ) : (
                   <>
-                    <TerminalIcon className="mr-2 size-4" />
+                    <Terminal className="mr-2 size-4" />
                     Generate
                   </>
                 )}
@@ -148,22 +150,7 @@ export function ShellSession() {
       )}
 
       {/* Loading state */}
-      {isLoading && (
-        <Card className="glass-card border-border/40" role="status" aria-live="polite">
-          <CardContent>
-            <div className="flex items-center gap-3">
-              <div className="flex gap-1" aria-hidden="true">
-                <div className="size-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: "0ms" }} />
-                <div className="size-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: "150ms" }} />
-                <div className="size-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: "300ms" }} />
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Translating to shell command...
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+      {isLoading && <AILoader />}
 
       {/* Command output */}
       {result && (
@@ -186,9 +173,16 @@ export function ShellSession() {
       {sandbox.error && (
         <Card className="border-yellow-500/30 bg-yellow-500/5" role="alert">
           <CardContent>
-            <div className="flex items-center gap-2">
-              <span className="text-yellow-500 text-sm" aria-hidden="true">&#9888;</span>
-              <p className="text-sm text-yellow-500/90">{sandbox.error}</p>
+            <div className="flex items-start gap-2">
+              <span className="text-yellow-500 text-sm mt-0.5" aria-hidden="true">&#9888;</span>
+              <div>
+                <p className="text-sm text-yellow-500/90">{sandbox.error}</p>
+                {result && (
+                  <p className="text-xs text-muted-foreground/50 mt-1">
+                    You can copy the command above and run it in your own terminal.
+                  </p>
+                )}
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -227,19 +221,3 @@ export function ShellSession() {
   );
 }
 
-function LoaderIcon({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-    </svg>
-  );
-}
-
-function TerminalIcon({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <polyline points="4 17 10 11 4 5" />
-      <line x1="12" x2="20" y1="19" y2="19" />
-    </svg>
-  );
-}

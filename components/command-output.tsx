@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { Play, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DangerWarning } from "@/components/danger-warning";
-import { FeedbackButtons } from "@/components/feedback-buttons";
+import { FeedbackBar } from "@/components/feedback-bar";
 import { isDangerous, getDangerReason } from "@/lib/safety";
 
 interface CommandOutputProps {
@@ -71,7 +72,7 @@ export function CommandOutput({ command, meta, query, onExecute, isExecuting, sa
                   <span className="animate-pulse">...</span>
                 ) : (
                   <>
-                    <PlayIcon className="size-3 mr-1" />
+                    <Play className="size-3 mr-1" />
                     Run
                   </>
                 )}
@@ -84,7 +85,7 @@ export function CommandOutput({ command, meta, query, onExecute, isExecuting, sa
               onClick={handleCopy}
               aria-label={copied ? "Copied to clipboard" : "Copy command to clipboard"}
             >
-              {copied ? <CheckIcon className="size-3" /> : <CopyIcon className="size-3" />}
+              {copied ? <Check className="size-3" /> : <Copy className="size-3" />}
             </Button>
           </div>
         </div>
@@ -103,33 +104,9 @@ export function CommandOutput({ command, meta, query, onExecute, isExecuting, sa
         ) : (
           <div />
         )}
-        <FeedbackButtons query={query || ""} command={command} />
+        <FeedbackBar query={query || ""} command={command} />
       </div>
     </div>
   );
 }
 
-function PlayIcon({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M8 5v14l11-7z" />
-    </svg>
-  );
-}
-
-function CopyIcon({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-    </svg>
-  );
-}
-
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
-  );
-}
