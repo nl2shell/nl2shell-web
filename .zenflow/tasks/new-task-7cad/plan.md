@@ -78,6 +78,7 @@ Add required headers for WebContainers (SharedArrayBuffer) without breaking Verc
 ---
 
 ### [ ] Step: Deploy to Vercel and configure nl2shell.com domain
+<!-- chat-id: 380234c2-b996-4057-b2bd-f5ea13cc78d3 -->
 
 Push to main, verify auto-deploy, configure domain and env vars.
 
