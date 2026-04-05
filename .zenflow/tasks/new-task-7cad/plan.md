@@ -39,15 +39,16 @@ Create `lib/browser-engine.ts` (Transformers.js pipeline for in-browser WebGPU i
 
 ---
 
-### [ ] Step: Build WebContainer sandbox
+### [x] Step: Build WebContainer sandbox
+<!-- chat-id: cc61929e-9c30-4982-988d-8b378c61693a -->
 
 Create the in-browser sandbox using WebContainers to replace the Docker relay for demo use.
 
-- Install `@webcontainer/api`
-- Create `lib/webcontainer-sandbox.ts` (boot, exec, teardown singleton)
-- Create `hooks/use-webcontainer.ts` (React hook: boot-on-first-run, exec, history tracking)
-- Update `types/sandbox.d.ts` to make `auditId` optional
-- Verify: `npx tsc --noEmit && npm run lint && npm run build`
+- [x] Install `@webcontainer/api`
+- [x] Create `lib/webcontainer-sandbox.ts` (boot, exec, teardown singleton)
+- [x] Create `hooks/use-webcontainer.ts` (React hook: boot-on-first-run, exec, history tracking)
+- [x] Update `types/sandbox.d.ts` to make `auditId` optional
+- [x] Verify: `npx tsc --noEmit && npm run lint && npm run build`
 
 ---
 

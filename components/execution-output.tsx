@@ -69,9 +69,11 @@ export function ExecutionOutput({ result, command }: ExecutionOutputProps) {
       </div>
 
       {/* Audit trail reference */}
-      <p className="text-[10px] text-muted-foreground/30 font-mono mt-1.5 text-right">
-        audit: {result.auditId}
-      </p>
+      {result.auditId && (
+        <p className="text-[10px] text-muted-foreground/30 font-mono mt-1.5 text-right">
+          audit: {result.auditId}
+        </p>
+      )}
     </div>
   );
 }
