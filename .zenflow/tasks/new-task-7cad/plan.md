@@ -52,15 +52,16 @@ Create the in-browser sandbox using WebContainers to replace the Docker relay fo
 
 ---
 
-### [ ] Step: Wire up UI — mode selector, browser translate, sandbox execution
+### [x] Step: Wire up UI — mode selector, browser translate, sandbox execution
+<!-- chat-id: 8572affb-4f18-4853-9070-1e593f4975cc -->
 
 Integrate browser inference and WebContainer sandbox into the main UI.
 
-- Add inference mode selector (Cloud / Browser / Auto) to `components/shell-session.tsx`
-- Update `hooks/use-translate.ts` to accept mode parameter and call browser engine directly in browser mode
-- Replace `useSandbox()` with `useWebContainer()` in shell-session for WebContainer execution
-- Update `components/execution-output.tsx` for optional auditId and command history display
-- Verify: `npx tsc --noEmit && npm run lint && npm run build`
+- [x] Add inference mode selector (Cloud / Browser / Auto) to `components/shell-session.tsx`
+- [x] Update `hooks/use-translate.ts` to accept mode parameter and call browser engine directly in browser mode
+- [x] Replace `useSandbox()` with `useWebContainer()` in shell-session for WebContainer execution
+- [x] Update `components/execution-output.tsx` for optional auditId and command history display
+- [x] Verify: `npx tsc --noEmit && npm run lint && npm run build`
 
 ---
 
