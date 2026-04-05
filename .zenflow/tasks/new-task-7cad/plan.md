@@ -26,14 +26,16 @@ Full spec saved to `.zenflow/tasks/new-task-7cad/spec.md`.
 
 ---
 
-### [ ] Step: Fix cleanResponse and create browser inference engine
+### [x] Step: Fix cleanResponse and create browser inference engine
+<!-- chat-id: 21de9e58-71d9-4162-803c-27c158597d60 -->
 
 Create `lib/browser-engine.ts` (Transformers.js pipeline for in-browser WebGPU inference) and update `lib/clean-response.ts` to strip `<think>` blocks from model output.
 
-- Install `@huggingface/transformers`
-- Create `lib/browser-engine.ts` with singleton pipeline, lazy loading, progress callbacks, and status events
-- Update `lib/clean-response.ts` to strip `<think>...</think>` blocks before other cleaning
-- Verify: `npx tsc --noEmit && npm run lint && npm run build`
+- [x] Install `@huggingface/transformers`
+- [x] Create `lib/browser-engine.ts` with singleton pipeline, lazy loading, progress callbacks, and status events
+- [x] Update `lib/clean-response.ts` to strip `<think>...</think>` blocks before other cleaning
+- [x] Exclude `relay/` from tsconfig (pre-existing build error)
+- [x] Verify: `npx tsc --noEmit && npm run lint && npm run build`
 
 ---
 
