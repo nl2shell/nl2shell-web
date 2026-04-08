@@ -13,6 +13,7 @@ const csp = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ["@huggingface/transformers"],
   async headers() {
     return [
       {
